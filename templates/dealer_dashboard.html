@@ -6,6 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>dealer_dashboard</h1>
+    <h1>Dealer Dashboard</h1>
+
+<h2>Hotels</h2>
+<ul>
+  {% for hotel in hotels %}
+    <li>{{ hotel.name }} - {{ hotel.location }}</li>
+  {% empty %}
+    <li>No hotels yet</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'add_hotel' %}">+ Add Hotel</a>
+
+<h2>Flights</h2>
+<ul>
+  {% for flight in flights %}
+    <li>{{ flight.flight_number }}: {{ flight.from_city }} → {{ flight.to_city }}</li>
+  {% empty %}
+    <li>No flights yet</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'add_flight' %}">+ Add Flight</a>
+
 </body>
 </html>

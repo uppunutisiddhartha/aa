@@ -50,7 +50,7 @@ def customer_register(request):
         Customer.objects.create(user=user, address=address)
 
         login(request, user)
-        return redirect('login')  
+        return redirect('rolelogin')  
 
     return render(request, 'auths/customer_register.html')
 
@@ -58,7 +58,7 @@ def customer_register(request):
 
 
 # Login view for both (same login page, redirect based on role)
-def login(request):
+def rolelogin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')

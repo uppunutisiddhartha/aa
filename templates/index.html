@@ -1,26 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    .button {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 16px;
-        margin: 10px;
-        text-decoration: none;
-        color: white;
-        background-color: #007BFF;
-        border-radius: 5px;
-    }
-</style>
-<body>
-    hpjoafhakjh
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LastMinute.ai – Book Last Minute Flights & Hotels</title>
 
-    <a  class="button"href="{% url 'dealer_register' %}">dealer_register</a>
-    <a class="button" href="{% url 'customer_register' %}">dealer_register</a>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --skyjet-blue: #0077FF;
+      --midnight-navy: #0B1D3A;
+      --sunset-coral: #FF6B4A;
+      --emerald-green: #00C48C;
+      --amber-glow: #FFB200;
+      --deep-red: #E74C3C;
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: #f7f9fc;
+      color: #333;
+    }
+
+    header {
+      background-color: var(--midnight-navy);
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-family: var(--font-heading);
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(145deg, var(--skyjet-blue), var(--amber-glow));
+      color: white;
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-family: var(--font-heading);
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+    }
+
+    .search-box {
+      background: white;
+      margin: -40px auto 40px;
+      padding: 20px;
+      width: 80%;
+      max-width: 800px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .search-box input,
+    .search-box select {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: var(--font-body);
+    }
+
+    .search-box button {
+      background-color: var(--skyjet-blue);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-family: var(--font-heading);
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+    }
+
+    .search-box button:hover {
+      background-color: #005dcc;
+    }
+
+    .recommendations {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      width: 280px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      text-align: left;
+      position: relative;
+    }
+
+    .card h3 {
+      font-family: var(--font-heading);
+      margin-top: 0;
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--amber-glow);
+      color: black;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 0.8em;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* Floating Chat Assistant */
+    .chat-assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      border: 2px solid var(--skyjet-blue);
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 12px var(--skyjet-blue);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .chat-assistant:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background: var(--midnight-navy);
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>LastMinute.ai</h1>
+    <nav>
+      <a href="{% url 'customer_register' %}">customer_register</a>
+      <a href="{% url 'dealer_register' %}">dealer_register</a>
+      <a href="{% url 'rolelogin' %}">login</a>
+      <a href="#">Chat</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>AI-Powered Last-Minute Travel Deals</h2>
+    <p>Book hotels and flights instantly with smart AI recommendations.</p>
+  </section>
+
+  <section class="search-box">
+    <input type="text" placeholder="From" />
+    <input type="text" placeholder="To" />
+    <select>
+      <option>Flight</option>
+      <option>Hotel</option>
+    </select>
+    <button>Search Deals</button>
+  </section>
+
+  <section class="recommendations">
+    <h2>Today's Best Picks</h2>
+    <div class="cards">
+      <div class="card">
+        <span class="badge">⏱️ Limited Time</span>
+        <h3>New York to London</h3>
+        <p>$350 • Non-stop • 6h 45m</p>
+        <p style="color: var(--emerald-green); font-weight: bold;">AI Recommended</p>
+      </div>
+      <div class="card">
+        <span class="badge" style="background: var(--sunset-coral);">🔥 Hot Deal</span>
+        <h3>Paris 4★ Hotel</h3>
+        <p>2 nights • $189 total</p>
+        <p style="color: var(--emerald-green); font-weight: bold;">AI Recommended</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Chat Assistant -->
+  <div class="chat-assistant" title="Ask our AI Assistant">
+    💬
+  </div>
+
+  <footer>
+    <p>&copy; 2025 LastMinute.ai. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>

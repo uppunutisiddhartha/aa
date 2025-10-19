@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Add Hotel</h2>
+{% if error %}
+  <p style="color: red;">{{ error }}</p>
+{% endif %}
+<form method="post">
+  {% csrf_token %}
+  <label>Name:</label><br>
+  <input type="text" name="name" required><br><br>
+
+  <label>Location:</label><br>
+  <input type="text" name="location" required><br><br>
+
+  <label>Description:</label><br>
+  <textarea name="description"></textarea><br><br>
+
+  <button type="submit">Add Hotel</button>
+</form>
+
+</body>
+</html>
